@@ -26,7 +26,6 @@
  * ```
  */
 declare module '$env/static/private' {
-	export const VITE_GOOGLE_MAPS_API_KEY: string;
 	export const NVM_INC: string;
 	export const TERM_PROGRAM: string;
 	export const NODE: string;
@@ -100,7 +99,7 @@ declare module '$env/static/private' {
  * ```
  */
 declare module '$env/static/public' {
-	
+	export const PUBLIC_GOOGLE_MAPS_API_KEY: string;
 }
 
 /**
@@ -119,7 +118,6 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
-		VITE_GOOGLE_MAPS_API_KEY: string;
 		NVM_INC: string;
 		TERM_PROGRAM: string;
 		NODE: string;
@@ -200,6 +198,7 @@ declare module '$env/dynamic/private' {
  */
 declare module '$env/dynamic/public' {
 	export const env: {
+		PUBLIC_GOOGLE_MAPS_API_KEY: string;
 		[key: `PUBLIC_${string}`]: string | undefined;
 	}
 }

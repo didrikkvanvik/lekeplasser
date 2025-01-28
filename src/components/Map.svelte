@@ -1,10 +1,11 @@
 <script lang="ts">
+	import { env } from '$env/dynamic/public';
 	import { onMount } from 'svelte';
 	import playgroundsData from '../lib/data/playgrounds.json';
 	import type { Feature, PlaygroundData } from '../types/playground';
 	import { mapStyles } from '../utils/map';
+	const apiKey = env.PUBLIC_GOOGLE_MAPS_API_KEY;
 
-	const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 	const STORAGE_KEY = 'drawn_playgrounds';
 
 	export let center: google.maps.LatLngLiteral = { lat: 58.97, lng: 5.73 };
@@ -27,7 +28,7 @@
 
 		if (!window.google) {
 			const script = document.createElement('script');
-			script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=drawing`;
+			script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=drawing`;
 			document.head.appendChild(script);
 
 			await new Promise((resolve) => {
