@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#app {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 2rem 1rem;
+	font-weight: normal;
+	width: 100%;
+	background-color: black;
+
+	h1,
+	p {
+		font-family: 'Playfair Display', monospace;
+		color: white;
+	}
+}
+
+@media (min-width: 1024px) {
+	body {
+		display: flex;
+		flex-direction: column;
+		padding: 0 2rem;
+	}
+}
