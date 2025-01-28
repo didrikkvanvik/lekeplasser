@@ -1,18 +1,18 @@
-interface Coordinate {
-	0: number; // longitude
-	1: number; // latitude
-}
+export type Coordinates = {
+	lat: number;
+	lng: number;
+}[];
 
 interface Geometry {
 	type: 'Polygon';
-	coordinates: Coordinate[][];
+	coordinates: Coordinates;
 }
 
 interface Properties {
 	OBJTYPE: 'Lekeplass';
 }
 
-interface Feature {
+export interface Feature {
 	type: 'Feature';
 	geometry: Geometry;
 	properties: Properties;
