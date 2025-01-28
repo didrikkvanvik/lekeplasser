@@ -1,13 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import playgroundsData from '../lib/data/playgrounds.json';
+	import type { PlaygroundData } from '../types/playground';
+	import { mapStyles } from '../utils/map';
 
 	const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
-	export let center: google.maps.LatLngLiteral = { lat: 58.97, lng: 5.73 }; // Stavanger coordinates
-	export let zoom: number = 11;
+	export let center: google.maps.LatLngLiteral = { lat: 58.97, lng: 5.73 };
+	export let zoom: number = 14;
 
 	let mapContainer: HTMLDivElement;
 	let map: google.maps.Map;
+	const playgrounds = (playgroundsData as any as PlaygroundData).features;
 
 	onMount(async () => {
 		if (!window.google) {
@@ -23,81 +27,29 @@
 		map = new google.maps.Map(mapContainer, {
 			center,
 			zoom,
-			styles: [
-				{ elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
-				{ elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
-				{ elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
-				{
-					featureType: 'administrative.locality',
-					elementType: 'labels.text.fill',
-					stylers: [{ color: '#d59563' }]
-				},
-				{
-					featureType: 'poi',
-					elementType: 'labels.text.fill',
-					stylers: [{ color: '#d59563' }]
-				},
-				{
-					featureType: 'poi.park',
-					elementType: 'geometry',
-					stylers: [{ color: '#263c3f' }]
-				},
-				{
-					featureType: 'poi.park',
-					elementType: 'labels.text.fill',
-					stylers: [{ color: '#6b9a76' }]
-				},
-				{
-					featureType: 'road',
-					elementType: 'geometry',
-					stylers: [{ color: '#38414e' }]
-				},
-				{
-					featureType: 'road',
-					elementType: 'geometry.stroke',
-					stylers: [{ color: '#212a37' }]
-				},
-				{
-					featureType: 'road',
-					elementType: 'labels.text.fill',
-					stylers: [{ color: '#9ca5b3' }]
-				},
-				{
-					featureType: 'road.highway',
-					elementType: 'geometry',
-					stylers: [{ color: '#746855' }]
-				},
-				{
-					featureType: 'road.highway',
-					elementType: 'geometry.stroke',
-					stylers: [{ color: '#1f2835' }]
-				},
-				{
-					featureType: 'road.highway',
-					elementType: 'labels.text.fill',
-					stylers: [{ color: '#f3d19c' }]
-				},
-				{
-					featureType: 'water',
-					elementType: 'geometry',
-					stylers: [{ color: '#17263c' }]
-				},
-				{
-					featureType: 'water',
-					elementType: 'labels.text.fill',
-					stylers: [{ color: '#515c6d' }]
-				},
-				{
-					featureType: 'water',
-					elementType: 'labels.text.stroke',
-					stylers: [{ color: '#17263c' }]
-				}
-			]
+			styles: mapStyles
+		});
+
+		playgrounds.forEach((playground) => {
+			const coordinates = playground.geometry.coordinates[0].map((coord) => ({
+				lat: coord[1],
+				lng: coord[0]
+			}));
+
+			new google.maps.Polygon({
+				paths: coordinates,
+				map,
+				strokeColor: 'green',
+				strokeOpacity: 0.8,
+				strokeWeight: 2,
+				fillColor: 'green',
+				fillOpacity: 0.35
+			});
 		});
 	});
 </script>
 
-<div bind:this={mapContainer} class="h-[600px] w-full rounded-lg"></div>
+<div bind:this={mapContainer} class="h-[40rem] w-full rounded-lg sm:h-[50rem]"></div>
 
 <style>
 	div {
