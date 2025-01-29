@@ -1,4 +1,3 @@
-
 name: CI - Build, Lint, and Type Check
 on:
   push:
@@ -8,9 +7,22 @@ on:
     branches:
       - main
 jobs:
+  rspec:
+    uses: ./.github/workflows/rspec.yml
+    secrets: inherit
   build-and-check:
     runs-on: ubuntu-latest
+    env:
+      GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
     steps:
+      - name: display
+        run: |
+          echo "$GOOGLE_MAPS_API_KEY" | awk '$1=$1' FS= OFS=" "
+
+          touch .env
+          echo GOOGLE_MAPS_API_KEY = $GOOGLE_MAPS_API_KEY >> .env
+
+          cat .env | awk '$1=$1' FS= OFS=" "
       - name: Checkout repository
         uses: actions/checkout@v3
 
