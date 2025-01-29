@@ -9,8 +9,6 @@ on:
 jobs:
   build-and-check:
     runs-on: ubuntu-latest
-    env:
-      PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.PUBLIC_GOOGLE_MAPS_API_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -25,10 +23,6 @@ jobs:
 
       - name: Run prettier
         run: npm run format
-
-      - name: Create env file
-        run: |
-          echo "PUBLIC_GOOGLE_MAPS_API_KEY=${{ secrets.PUBLIC_GOOGLE_MAPS_API_KEY }}" > .env
 
       - name: Build app
         run: npm run build
