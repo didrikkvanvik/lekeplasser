@@ -5,8 +5,7 @@
     "src": ".svelte-kit/generated/server/internal.js",
     "isEntry": true,
     "imports": [
-      "_internal.js",
-      "_shared-server.js"
+      "_internal.js"
     ]
   },
   "_app.D0ZNvBni.css": {
@@ -35,13 +34,8 @@
     "imports": [
       "_utils.js",
       "_equality.js",
-      "_index.js",
-      "_shared-server.js"
+      "_index.js"
     ]
-  },
-  "_shared-server.js": {
-    "file": "chunks/shared-server.js",
-    "name": "shared-server"
   },
   "_utils.js": {
     "file": "chunks/utils.js",
@@ -65,8 +59,7 @@
     "isEntry": true,
     "imports": [
       "_internal.js",
-      "_exports.js",
-      "_shared-server.js"
+      "_exports.js"
     ]
   },
   "src/routes/+layout.svelte": {
@@ -88,7 +81,6 @@
     "isEntry": true,
     "imports": [
       "_index.js",
-      "_shared-server.js",
       "_utils.js"
     ],
     "css": [
