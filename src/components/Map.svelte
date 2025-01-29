@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { PUBLIC_GOOGLE_MAPS_API_KEY } from '$env/static/public';
+	import { env } from '$env/dynamic/public';
 	import { onMount } from 'svelte';
 	import playgroundsData from '../lib/data/playgrounds.json';
 	import type { Feature, PlaygroundData } from '../types/playground';
 	import { mapStyles } from '../utils/map';
 
-	const apiKey = PUBLIC_GOOGLE_MAPS_API_KEY;
+	const apiKey = env.PUBLIC_GOOGLE_MAPS_API_KEY;
 	const STORAGE_KEY = 'drawn_playgrounds';
 
 	export let center: google.maps.LatLngLiteral = { lat: 58.97, lng: 5.73 };
