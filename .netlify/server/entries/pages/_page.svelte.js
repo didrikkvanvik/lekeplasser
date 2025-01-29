@@ -5,7 +5,7 @@ import { p as public_env } from "../../chunks/shared-server.js";
 import { f as fallback } from "../../chunks/utils.js";
 function Map($$payload, $$props) {
   push();
-  public_env.GOOGLE_MAPS_API_KEY;
+  public_env.PUBLIC_GOOGLE_MAPS_API_KEY;
   let center = fallback($$props["center"], () => ({ lat: 58.97, lng: 5.73 }), true);
   let zoom = fallback($$props["zoom"], 14);
   $$payload.out += `<div class="space-y-4"><div class="overflow-hidden rounded-xl"><div class="h-[40rem] w-full sm:h-[50rem]"></div></div> <div class="flex justify-center"><button class="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600">Fjern lagrede lekeplasser</button></div></div>`;

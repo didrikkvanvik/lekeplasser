@@ -10,16 +10,11 @@ jobs:
   build-and-check:
     runs-on: ubuntu-latest
     env:
-      GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+      PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.PUBLIC_GOOGLE_MAPS_API_KEY }}
     steps:
-      - name: display
-        run: |
-          echo "$GOOGLE_MAPS_API_KEY" | awk '$1=$1' FS= OFS=" "
+      - name: Display
+        run: echo $PUBLIC_GOOGLE_MAPS_API_KEY
 
-          touch .env
-          echo GOOGLE_MAPS_API_KEY = $GOOGLE_MAPS_API_KEY >> .env
-
-          cat .env | awk '$1=$1' FS= OFS=" "
       - name: Checkout repository
         uses: actions/checkout@v3
 

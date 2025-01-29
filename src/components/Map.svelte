@@ -5,7 +5,7 @@
 	import type { Feature, PlaygroundData } from '../types/playground';
 	import { mapStyles } from '../utils/map';
 
-	const apiKey = env.GOOGLE_MAPS_API_KEY;
+	const apiKey = env.PUBLIC_GOOGLE_MAPS_API_KEY;
 	const STORAGE_KEY = 'drawn_playgrounds';
 
 	export let center: google.maps.LatLngLiteral = { lat: 58.97, lng: 5.73 };
