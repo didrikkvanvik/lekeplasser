@@ -2,6 +2,7 @@ import { g as get_descriptor, i as index_of, d as define_property, a as is_array
 import { s as safe_equals, e as equals } from "./equality.js";
 import { H as HYDRATION_ERROR, a as HYDRATION_START, b as HYDRATION_END, r as render, p as push$1, s as setContext, c as pop$1 } from "./index.js";
 import "clsx";
+import "./shared-server.js";
 const BROWSER = false;
 let base = "";
 let assets = base;
@@ -16,16 +17,6 @@ function reset() {
 }
 function set_assets(path) {
   assets = initial.assets = path;
-}
-let public_env = {};
-let safe_public_env = {};
-function set_private_env(environment) {
-}
-function set_public_env(environment) {
-  public_env = environment;
-}
-function set_safe_public_env(environment) {
-  safe_public_env = environment;
 }
 const DERIVED = 1 << 1;
 const EFFECT = 1 << 2;
@@ -1525,7 +1516,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "1ch8qqc"
+  version_hash: "16b37w1"
 };
 async function get_hooks() {
   let handle;
@@ -1549,18 +1540,13 @@ export {
   base as b,
   read_implementation as c,
   options as d,
-  set_private_env as e,
-  prerendering as f,
-  set_public_env as g,
-  get_hooks as h,
-  set_safe_public_env as i,
-  set_read_implementation as j,
-  set_assets as k,
-  set_building as l,
-  set_manifest as m,
-  set_prerendering as n,
+  set_assets as e,
+  set_building as f,
+  get_hooks as g,
+  set_manifest as h,
+  set_prerendering as i,
   override as o,
-  public_env as p,
+  prerendering as p,
   reset as r,
-  safe_public_env as s
+  set_read_implementation as s
 };
